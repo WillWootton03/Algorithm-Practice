@@ -2,8 +2,7 @@ numbers = input('Enter numbers seperated by a comma: ')
 numbers = [int(number.strip()) for number in numbers.split(',')]
 
 def partition(numbers, lIndex, hIndex):
-    m = lIndex + (hIndex - lIndex) / 2
-    m = int(m)
+    m = lIndex + (hIndex - lIndex) // 2
     pivot = numbers[m]
 
     done = False
