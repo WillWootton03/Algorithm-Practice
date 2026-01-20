@@ -1,15 +1,12 @@
-numbers = [1,2,3,4]
-target = 3
+nums = [3,2,4]
+target = 6
 
-def twoSum(numbers, target):
-    l, r = 0, len(numbers) - 1
+def twoSum(nums, target):
+    num_map = {}
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in num_map:
+            return [num_map[complement], i]
+        num_map[num] = i
 
-    while l < r:
-        if numbers[l] + numbers[r] == target:
-            return [l+1, r+1]
-        elif numbers[l] + numbers[r] > target:
-            r -=1
-        elif numbers[l] + numbers[r] < target:
-            l +=1
-
-print(twoSum(numbers, target))
+print(twoSum(nums, target))
