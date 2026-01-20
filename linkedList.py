@@ -8,6 +8,25 @@ class LinkedList():
         self.head = None
         self.tail = None
         self.length = 0
+
+    def __str__(self):
+        i = 1
+        node = self.head
+        str = ''
+        while i <= self.length:
+            # Prints without trailing comma when node is tail, else prints with comma and space
+            if node == self.tail:
+                str += f'{node.value}'
+            else:
+                str += f'{node.value}, '
+            # If there is a next node, set the next node and incremement i, else break loop
+            if node.next:
+                node = node.next
+                i += 1
+            else:
+                break
+
+        return str
     
     def append(self, node):
         # If list is empty set head and tail to node
@@ -46,24 +65,15 @@ class LinkedList():
         tmp_prev.next = tmp.next
         self.length -= 1
     
-    def __str__(self):
-        i = 1
-        node = self.head
-        str = ''
-        while i <= self.length:
-            # Prints without trailing comma when node is tail, else prints with comma and space
-            if node == self.tail:
-                str += f'{node.value}'
-            else:
-                str += f'{node.value}, '
-            # If there is a next node, set the next node and incremement i, else break loop
-            if node.next:
-                node = node.next
-                i += 1
-            else:
-                break
-
-        return str
+    def insertAfter(self, curr, new):
+        if self.head is None:
+            self.head, self.tail = new
+        elif curr == self.tail:
+            curr.next, self.tail = new
+        else:
+            new.next = curr.next
+            curr.next = new
+        self.length += 1
 
 node1 = Node(1)
 node2 = Node(2)
@@ -75,4 +85,6 @@ linkedList.append(node2)
 linkedList.append(node3)
 linkedList.append(node4)
 linkedList.remove(node2)
+node5 = Node(5)
+linkedList.insertAfter(node3, node5)
 print(linkedList)
