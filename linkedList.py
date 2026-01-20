@@ -75,6 +75,28 @@ class LinkedList():
             curr.next = new
         self.length += 1
 
+    def find(self, val):
+        # Checks base cases making search O(1) if node is head or tail
+        if self.head.value == val:
+            return self.head
+        if self.tail.value == val:
+            return self.tail
+        
+        i = 1
+        # Because base case check we know it cant be head
+        curr = self.head.next
+        while i < self.length:
+            if curr.value == val:
+                return curr
+            else:
+                # Increment curr and i if val not found
+                curr= curr.next
+                # We know it can't be tail so if after moving curr its tail it has to be none meaning we can stop loop before it happens
+                if curr == self.tail:
+                    return None
+                i += 1
+
+
 node1 = Node(1)
 node2 = Node(2)
 node3 = Node(3)
@@ -88,3 +110,6 @@ linkedList.remove(node2)
 node5 = Node(5)
 linkedList.insertAfter(node3, node5)
 print(linkedList)
+# Catch so no error happens if you dont find a node
+if linkedList.find(2):
+    print(linkedList.find(2).value)
