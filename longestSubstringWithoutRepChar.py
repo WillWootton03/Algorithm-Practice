@@ -1,0 +1,17 @@
+def lengthOfLongestSubstring(s):
+    l = 0 
+    longest = 0
+    sett = set()
+    n = len(s)
+    
+    # O(n)
+    for r in range(n):
+        while s[r] in set:
+            sett.remove(s[l])
+            l += 1
+        
+        w = (r - l) + 1
+        longest = max(w, longest)
+        sett.add(s[r])
+
+    return longest

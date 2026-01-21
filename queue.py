@@ -2,48 +2,49 @@ class Node:
     def __init__(self, val):
         self.val = val
         self.next = None
-
-class Stack:
+    
+class Queue:
     def __init__(self):
         self.head = None
         self.tail = None
-        self.length = 0
-
+        self.length = None
+    
     def __str__(self):
         curr = self.head
         str = ''
         while curr is not None:
-            if curr is self.tail:
-                str += f'{curr.val}'
-                return str
             str += f'{curr.val}, '
             curr = curr.next
-    
-    def push(self, node):
+            if curr.next is None:
+                str += f'{curr.val}'
+                return str
+
+
+    def push(self, val):
         if self.length == 0:
-            self.tail = node
-        node.next = self.head
-        self.head = node
+            self.head = val
+            self.tail = val
+        else:
+            self.tail.next = val
         self.length += 1
     
     def pop(self):
+        temp = self.head
         self.head = self.head.next
         self.length -= 1
+        return temp
     
-    def peek(self):
-        return self.head
-
 node1 = Node(1)
 node2 = Node(2)
 node3 = Node(3)
 node4 = Node(4)
 
-stack = Stack()
+queue = Queue()
 
-stack.push(node1)
-stack.push(node2)
-stack.push(node3)
-stack.push(node4)
-print(stack.peek().val)
-stack.pop()
-print(stack)
+queue.push(node1)
+queue.push(node2)
+queue.push(node3)
+queue.push(node4)
+print(queue)
+queue.pop()
+print(queue)
