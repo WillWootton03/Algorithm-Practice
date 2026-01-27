@@ -1,0 +1,19 @@
+class Solution:
+    def anagramMappings(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        # Base case since nums 1 can be 1 resulting in res always returning 0
+        if len(nums1) == 1:
+            return [0]
+        
+        # Result list of indexes
+        res = []
+        # Hash Map of indexes for each val
+        finder = {}
+
+        # Get all values and set an index for them for quick lookup in hashmap
+        for j, val in enumerate(nums2):
+            finder[val] = j
+        # find each corresponding value in hash map and add its index to result
+        for i in nums1:
+            res.append(finder[i])
+        
+        return res
